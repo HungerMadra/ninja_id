@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,8 +7,16 @@ void main() {
   ),
   );
 }
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
   const NinjaCard({Key? key}) : super(key: key);
+
+  @override
+  State<NinjaCard> createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+
+  int ninjaLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +54,7 @@ class NinjaCard extends StatelessWidget {
               style: TextStyle(color: Colors.grey,letterSpacing: 1.5),
             ),
             const SizedBox(height: 10.0),
-            Text('8',
+            Text('$ninjaLevel',
               style: TextStyle(color: Colors.amberAccent[200],letterSpacing: 1.5, fontSize: 28.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30.0),
@@ -59,13 +68,33 @@ class NinjaCard extends StatelessWidget {
                   color: Colors.grey[400],fontSize: 18.0,letterSpacing: 1.0,
                 ),)
               ],
-            )
+            ),
+            const SizedBox(height: 60.0),
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [ ElevatedButton(onPressed: () {
+                  if (kDebugMode) {
+                    setState(() {
+                      ninjaLevel++;
+                    });
+                  }
+                }, style: TextButton.styleFrom(backgroundColor: Colors.amberAccent[200]),
+                    child: const Text('LEVEL UP ',
+                    style: TextStyle(fontSize: 18, letterSpacing: 1.0, fontWeight: FontWeight.bold),
+                ),
+                ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+
 
 
   
